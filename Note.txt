@@ -1,0 +1,9 @@
+Git and GitHub for Beginners - Crash Course
+https://www.youtube.com/watch?v=RGOj5yH7evk&t=612s
+
+https://github.com/Annie-Huang/demo-repo
+
+====================================================
+
+Note is in:
+C:\react\GitNote.txt
