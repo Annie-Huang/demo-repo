@@ -1,9 +1,19 @@
 Git and GitHub for Beginners - Crash Course
 https://www.youtube.com/watch?v=RGOj5yH7evk&t=612s
 
+Git & GitHub Crash Course For Beginners
+https://www.youtube.com/watch?v=SWYqp7iY_Tc&t=7s
+
+Git Tutorials
+https://www.youtube.com/playlist?list=PLkEZWD8wbltmcZQaA0ism9k2E6MGRnHZ7
+Up to:
+The basics of Git. Learn the basic Git commands.
+
 https://github.com/Annie-Huang/demo-repo
 
 ====================================================
 
 Note is in:
 C:\react\GitNote.txt
+
+
