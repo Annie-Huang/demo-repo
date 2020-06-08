@@ -1,0 +1,253 @@
+C:\react\relaxer-app>git --version
+git version 2.24.1.windows.2
+
+###################################################
+## Create git repo and standard checkin process ###
+###################################################
+
+Method 1: create repo in github first and create folder locally to link
+-------------------
+C:\react\demo-repo>git remote add origin git@github.com:Annie-Huang/demo-repo.git	<< Creat the linkage
+C:\react\demo-repo>git remote -v							<< List which remote repo your directory is linked to
+
+Method 2: the git repo is already created by someone and you have to clone it.
+-------------------
+C:\react>git clone git@github.com:Annie-Huang/demo-repo.git
+Cloning into 'demo-repo'...
+
+C:\react\demo-repo>git status
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   README.md
+
+Untracked files:							<< untracked files means it never saved in git.
+  (use "git add <file>..." to include in what will be committed)
+        index.html
+
+
+C:\react\demo-repo>git add index.html		<< get git to track a specific file
+C:\react\demo-repo>git add .			<< get git to track all the untrack files
+C:\react\demo-repo>git status
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   README.md
+        new file:   index.html
+
+
+C:\react\demo-repo>git commit -m "Added index.html" -m "some description"	<< First m is the msg title. second m is the msg description
+
+C:\react\demo-repo>ssh-keygen -t rsa -b 4096 -C "email@example.com"
+Generating public/private rsa key pair.
+Enter file in which to save the key (C:\Users\Annie/.ssh/id_rsa): testkey	<< If you choose a name it will generate: testkey and testkey.pub in your current dir
+
+C:\react\demo-repo>git push origin master	<< push to master branch
+C:\react\demo-repo>git push -u origin master	<< set up default upstream so I don't need to type 'origin master' everytime.
+
+#################
+### Branching ###
+#################
+C:\react\demo-repo>git branch		<< list out how many branches you have, * meaning you are currently in that branch
+* master
+
+C:\react\demo-repo>git checkout -b feature-readme-instructions	<< Create and switch to "feature-readme-instructions" branch
+C:\react\demo-repo>git checkout feature-readme-instructions	<< switch to the master branch
+								   in Mac, you can type any substring (e.g. instruc) of the branch name and tab to get the whole branch name.
+
+C:\react\demo-repo>git diff feature-readme-instructions		<< Show the different between feature-readme-instructions and current branch (e.g. master)
+diff --git a/README.md b/README.md
+index be4c885..609f242 100644
+--- a/README.md
++++ b/README.md
+@@ -5,7 +5,3 @@ Some description!
+ ## Subheader
+
+ Watch tutorial on YouTube
+-								<< All the '-' are code my current branch (e.g. master) doesn't have.
+-## Local Development
+-
+-1. Open index.html in your browser.
+
+
+C:\react\demo-repo>git push					<< you need to specific which branch to push to (even if you are in currently in feature-readme-instructions arleady)
+fatal: The current branch feature-readme-instructions has no upstream branch.
+To push the current branch and set the remote as upstream, use
+    git push --set-upstream origin feature-readme-instructions
+
+
+C:\react\demo-repo>git push -u origin feature-readme-instructions				<< -u is shortform for --set-upstream
+..
+remote: Create a pull request for 'feature-readme-instructions' on GitHub by visiting:
+remote:      https://github.com/Annie-Huang/demo-repo/pull/new/feature-readme-instructions	<< it tells you how to create a pull request as well.
+
+
+C:\react\demo-repo>git pull		<< Pull from remote master branch (assumed you are already in master branch).
+					   If you haven't set up --set-upstream, then you will need to do "git pull origin master"
+
+C:\react\demo-repo>git branch -d feature-readme-instructions		<< remove local branch
+
+##########################
+## Git merge conflict ####
+##########################
+C:\react\demo-repo>git checkout -b quick-test
+Switched to a new branch 'quick-test'
+
+C:\react\demo-repo>git status
+        modified:   index.html
+C:\react\demo-repo>git diff				<< Checking the different of your local branch from the last commit
+C:\react\demo-repo>git commit -am "added world"		<< -am is add and msg. It only worked on modified files, not untrack files
+
+C:\react\demo-repo>git checkout master
+C:\react\demo-repo>git checkout quick-test		<< You cannot switch branch if you are modified files (does it only failed to checkout if the modified file is different in the new branches? Or any modified files?)
+error: Your local changes to the following files would be overwritten by checkout:
+        index.html
+Please commit your changes or stash them before you switch branches.
+Aborting
+
+C:\react\demo-repo>git commit -am "added there"
+C:\react\demo-repo>git checkout quick-test
+C:\react\demo-repo>git diff master		<< What you will typically do is in your local master, pull from origin/master and 
+						   do a 'git diff master' to check the different between your current branch and the local master.
+						   Merge the confict here
+
+C:\react\demo-repo>git merge master		<< Merge into master branch. If there is conflict, go to the index.html and manually fixed the conflict.
+Auto-merging index.html
+CONFLICT (content): Merge conflict in index.html
+Automatic merge failed; fix conflicts and then commit the result.
+
+<body>
+<<<<<<< HEAD
+    <div>Hello</div>
+    <p>World</p>
+=======
+    <p>there</p>
+>>>>>>> master
+</body>
+
+change to:
+<body>
+    <div>Hello</div>
+    <p>World</p>
+    <p>there</p>
+</body>
+
+
+C:\react\demo-repo>git status
+...
+        both modified:   index.html
+C:\react\demo-repo>git diff
+C:\react\demo-repo>git commit -am 'updated with master'
+
+
+######################
+## Undoing in Git #### 
+######################
+Undo staging (before commit):
+----------------------------------
+C:\react\demo-repo>git status
+        modified:   README.md	<< in red color
+
+C:\react\demo-repo>git add README.md
+C:\react\demo-repo>git status
+        modified:   README.md	<< in green color
+
+
+C:\react\demo-repo>git reset	<< or C:\react\demo-repo>git reset README.md
+Unstaged changes after reset:
+M       README.md
+C:\react\demo-repo>git status
+        modified:   README.md	<< in red color
+
+
+Undo the last commit (before push):
+----------------------------------------------
+C:\react\demo-repo>git add README.md
+C:\react\demo-repo>git commit -m "Added install step"
+C:\react\demo-repo>git status
+nothing to commit, working tree clean
+
+C:\react\demo-repo>git reset HEAD~1	<< reset the HEAD to 1 commit early.
+Unstaged changes after reset:
+M       README.md
+
+C:\react\demo-repo>git status
+        modified:   README.md	<< in red color, uncommit and unstage.
+C:\react\demo-repo>git diff
++2. Have fun
+
+
+Undo the a specific commit (before push):
+----------------------------------------------
+C:\react\demo-repo>git log		<< See all your commits. It started from the latest to the oldest.
+					   Let's say you want undo commit and get back to the status when you made "added world" changes....
+					   You can hit spacebar to get to the end and the quit
+
+commit 417967ba8dbe5037c0fac67229c1856be8c63ffd (HEAD -> quick-test, origin/quick-test)
+Merge: b5aeccc fb88cc3
+Author: Annie Huang <annie.hn@gmail.com>
+Date:   Mon Jun 8 16:54:49 2020 +1000
+
+    updated with master
+
+...
+
+								<< --------------------------------------------
+commit b5aeccc06bf11ee4903c5205f65494f1b625a582			    I want to get back to this change
+Author: Annie Huang <annie.hn@gmail.com>
+Date:   Mon Jun 8 16:35:26 2020 +1000
+
+    added world
+								<< --------------------------------------------
+
+commit 9000338a87e1eacf054179f5270b3f434f3dec55 (origin/master, origin/HEAD)
+Merge: 9215453 ef03a40
+Author: Annie-Huang <annie.hn@gmail.com>
+Date:   Mon Jun 8 16:20:17 2020 +1000
+
+    Merge pull request #1 from Annie-Huang/feature-readme-instructions
+
+    updated readme
+
+
+
+C:\react\demo-repo>git reset b5aeccc06bf11ee4903c5205f65494f1b625a582		<< Reset your git into certain commit. Will unstage certain files.
+Unstaged changes after reset:
+M       README.md
+M       index.html
+
+
+C:\react\demo-repo>git reset --hard b5aeccc06bf11ee4903c5205f65494f1b625a582	<< This is no only to unstage, But totally remove all the change after this commit.
+HEAD is now at b5aeccc added world
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
