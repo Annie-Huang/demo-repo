@@ -7,13 +7,15 @@ git version 2.24.1.windows.2
 
 Method 1: create repo in github first and create folder locally to link
 -------------------
-C:\react\demo-repo>git remote add origin git@github.com:Annie-Huang/demo-repo.git	<< Creat the linkage
+C:\react\demo-repo>git remote add origin git@github.com:Annie-Huang/demo-repo.git	<< Create the linkage
 C:\react\demo-repo>git remote -v							<< List which remote repo your directory is linked to
 
 Method 2: the git repo is already created by someone and you have to clone it.
 -------------------
 C:\react>git clone git@github.com:Annie-Huang/demo-repo.git
 Cloning into 'demo-repo'...
+
+C:\react>git clone git@github.com:Annie-Huang/demo-repo.git demo-repo-newName		<< Clone repo into a new name. So instead of demo-repo, the folder name will call demo-repo-newName. But it will still link the same repo.
 
 C:\react\demo-repo>git status
 Changes not staged for commit:
@@ -61,26 +63,29 @@ C:\react\demo-repo>git push -u origin master	<< set up default upstream so I don
 
 
 C:\react\demo-repo>git status
-        modified:   README.md		<< in red color
+        modified:   README.md				<< in red color
 
 C:\react\demo-repo>git add README.md
 C:\react\demo-repo>git status
-        modified:   README.md		<< in green color
+        modified:   README.md				<< in green color
 
-C:\react\demo-repo>git rm --cached README.md
+C:\react\demo-repo>git rm --cached README.md		<< unstaged changes
 rm 'README.md'
 
 C:\react\demo-repo>git status
 Changes to be committed:
   (use "git restore --staged <file>..." to unstage)
-        deleted:    README.md		<< in green color
+        deleted:    README.md				<< in green color
 
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
-        README.md			<< in red color
+        README.md					<< in red color
 
 
-C:\react\demo-repo>git add .
+C:\react\demo-repo>git add --all
+C:\react\demo-repo>git add -A
+C:\react\demo-repo>git add .		<< all 3 commands are the same
+
 C:\react\demo-repo>git status
         modified:   README.md		<< in green color
 If you modify README.md again:
@@ -88,15 +93,31 @@ C:\react\demo-repo>git status
         modified:   README.md		<< in green color, the one you add before still in green
         modified:   README.md		<< in red color, the one you just modified will be in red. You will need to "git add ." again if you want to commit both changes
 					   This is nicely prove in git extension.
+
+
+C:\react\demo-repo>git log
+C:\react\demo-repo>git log --oneline		<< type :q to exit the log.
+857fba7 (HEAD -> master, origin/master, origin/HEAD) add tutorial list info
+
+C:\react\demo-repo>git log --pretty=oneline
+857fba7e0e3a9832b6af37be9dea1ceb973c9783 (HEAD -> master, origin/master, origin/HEAD) add tutorial list info
+
+	
+
 #################
 ### Branching ###
 #################
 C:\react\demo-repo>git branch		<< list out how many branches you have, * meaning you are currently in that branch
 * master
 
+C:\react\demo-repo>git branch feature-readme-instructions	<< Create the branch
 C:\react\demo-repo>git checkout -b feature-readme-instructions	<< Create and switch to "feature-readme-instructions" branch
-C:\react\demo-repo>git checkout feature-readme-instructions	<< switch to the master branch
+C:\react\demo-repo>git checkout feature-readme-instructions	<< switch to the  feature-readme-instructions branch
 								   in Mac, you can type any substring (e.g. instruc) of the branch name and tab to get the whole branch name.
+
+C:\react\demo-repo>git checkout -				<< switch back to your last checkout branch
+
+C:\react\demo-repo>git push origin feature-readme-instructions	<< push the branch to remote
 
 C:\react\demo-repo>git diff feature-readme-instructions		<< Show the different between feature-readme-instructions and current branch (e.g. master)
 diff --git a/README.md b/README.md
@@ -150,13 +171,13 @@ Please commit your changes or stash them before you switch branches.
 Aborting
 
 C:\react\demo-repo>git commit -am "added there"
-C:\react\demo-repo>git checkout quick-test
-C:\react\demo-repo>git diff master		<< What you will typically do is in your local master, pull from origin/master and 
+C:\react\demo-repo>git checkout master
+C:\react\demo-repo>git diff quick-test		<< What you will typically do is in your local master, pull from origin/master and 
 						   do a 'git diff master' to check the different between your current branch and the local master.
 						   Merge the confict here
 
-C:\react\demo-repo>git merge master		<< Merge from current branch into master branch. If there is no conflict, will pop up interface for you to enter merge msg.
-C:\react\demo-repo>git merge master		<< Merge from current branch into master branch. If there is conflict, go to the index.html and manually fixed the conflict.
+C:\react\demo-repo>git merge quick-test		<< Merge quick-test branch into current branch (master). If there is no conflict, will pop up interface for you to enter merge msg.
+C:\react\demo-repo>git merge quick-test		<< Merge quick-test branch into current branch (master). If there is conflict, go to the index.html and manually fixed the conflict.
 Auto-merging index.html
 CONFLICT (content): Merge conflict in index.html
 Automatic merge failed; fix conflicts and then commit the result.
@@ -183,6 +204,10 @@ C:\react\demo-repo>git status
         both modified:   index.html
 C:\react\demo-repo>git diff
 C:\react\demo-repo>git commit -am 'updated with master'
+
+
+C:\react\demo-repo>git push			<< after merge, you typically need to push back to master as your branch is ahead of 'origin/master' by xx commits.
+C:\react\demo-repo>git branch -d quick-test	<< you will typically remove a branch after it merged into master.
 
 
 ######################
