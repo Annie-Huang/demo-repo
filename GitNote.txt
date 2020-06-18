@@ -210,6 +210,38 @@ C:\react\demo-repo>git push			<< after merge, you typically need to push back to
 C:\react\demo-repo>git branch -d quick-test	<< you will typically remove a branch after it merged into master.
 
 
+################
+## Git diff #### 
+################
+
+C:\react\demo-repo>git log --pretty=oneline
+8f30dff25d1c504d6128f30dff25d1c504d612322e7e7ecec2ce381fd35 (HEAD -> master, origin/master, origin/HEAD) Update branching notes from IhateTomatoes
+857fba7e0e3a9832b6af37be9dea1ceb973c9783 add tutorial list info
+a0f27416d04ad224f64fe7cd8fabc910481505b1 Add new notes from Traversy Media
+
+C:\react\demo-repo>git diff 857fba7e0e3a9832b6af37be9dea1ceb973c9783
+
+
+#########################
+## Git revert a file #### 
+#########################
+
+C:\react\demo-repo>git checkout 857fba7e0e3a9832b6af37be9dea1ceb973c9783 README.md	<< revert one file from its version from the past: "git checkout <commit-id> <filename>"
+											   only revert back one file from a specific commit, this will keep the reverted file staged.
+
+C:\react\demo-repo>git reset HEAD		<< this will unstage the reverted(and staged) file. E.g. README.md will become unstaged.
+C:\react\demo-repo>git restore README.md
+
+
+############################################
+## Revert specific changes to your file #### 
+############################################
+
+C:\react\demo-repo>git checkout 857fba7e0e3a9832b6af37be9dea1ceb973c9783 README.md -p
+	<< p stands for patch. This allows you to choose which file you want to bring in. It will list out all the different from the file in that check vs the current version.
+           then you can choose manual mode to edit, it's actually very straght forward to edit according to the video.
+
+
 ######################
 ## Undoing in Git #### 
 ######################
@@ -228,6 +260,12 @@ Unstaged changes after reset:
 M       README.md
 C:\react\demo-repo>git status
         modified:   README.md	<< in red color
+
+
+C:\react\demo-repo>git log --pretty=oneline	<< type ":q" to exit the log, if your log is too long
+C:\react\demo-repo>git reset <fileName>		<< if you there are multiple files that are staged and you only want to reset one to unstaged
+C:\react\demo-repo>git reset HEAD		<< will reset all staged changes to unstaged.
+C:\react\demo-repo>git reset --hard HEAD	<< this will remove all your current changes (stages or unstaged) and just move the head as the last commit.
 
 
 Undo the last commit (before push):
@@ -289,10 +327,6 @@ M       index.html
 
 C:\react\demo-repo>git reset --hard b5aeccc06bf11ee4903c5205f65494f1b625a582	<< This is no only to unstage, But totally remove all the change after this commit.
 HEAD is now at b5aeccc added world
-
-
-
-
 
 
 
