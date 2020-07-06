@@ -102,7 +102,7 @@ C:\react\demo-repo>git log --oneline		<< type :q to exit the log.
 C:\react\demo-repo>git log --pretty=oneline
 857fba7e0e3a9832b6af37be9dea1ceb973c9783 (HEAD -> master, origin/master, origin/HEAD) add tutorial list info
 
-	
+
 
 #################
 ### Branching ###
@@ -172,7 +172,7 @@ Aborting
 
 C:\react\demo-repo>git commit -am "added there"
 C:\react\demo-repo>git checkout master
-C:\react\demo-repo>git diff quick-test		<< What you will typically do is in your local master, pull from origin/master and 
+C:\react\demo-repo>git diff quick-test		<< What you will typically do is in your local master, pull from origin/master and
 						   do a 'git diff master' to check the different between your current branch and the local master.
 						   Merge the confict here
 
@@ -211,7 +211,7 @@ C:\react\demo-repo>git branch -d quick-test	<< you will typically remove a branc
 
 
 ################
-## Git diff #### 
+## Git diff ####
 ################
 
 C:\react\demo-repo>git log --pretty=oneline
@@ -223,7 +223,7 @@ C:\react\demo-repo>git diff 857fba7e0e3a9832b6af37be9dea1ceb973c9783
 
 
 #########################
-## Git revert a file #### 
+## Git revert a file ####
 #########################
 
 C:\react\demo-repo>git checkout 857fba7e0e3a9832b6af37be9dea1ceb973c9783 README.md	<< revert one file from its version from the past: "git checkout <commit-id> <filename>"
@@ -234,7 +234,7 @@ C:\react\demo-repo>git restore README.md
 
 
 ############################################
-## Revert specific changes to your file #### 
+## Revert specific changes to your file ####
 ############################################
 
 C:\react\demo-repo>git checkout 857fba7e0e3a9832b6af37be9dea1ceb973c9783 README.md -p
@@ -243,7 +243,7 @@ C:\react\demo-repo>git checkout 857fba7e0e3a9832b6af37be9dea1ceb973c9783 README.
 
 
 ######################
-## Undoing in Git #### 
+## Undoing in Git ####
 ######################
 Undo staging (before commit):
 ----------------------------------
@@ -330,21 +330,28 @@ HEAD is now at b5aeccc added world
 
 
 
+##################
+## Git Config ####
+##################
+C:\react\demo-repo\.git\config		<< Local
+C:\Users\Annie\.gitconfig		<< Global
+C:\ProgramData\Git\config		<< System
 
 
+C:\react\demo-repo>git config --list		<< type :q to exit the log.
+C:\react\demo-repo>git config --list --local
+C:\react\demo-repo>git config --list --global
+C:\react\demo-repo>git config --list --system
+C:\react\demo-repo>git config --local --edit
 
+Creating custom commit message:
+Create C:\Users\Annie\.gitmessage.txt	<< put your commit msg here.
+git config --global commit.template C:\Users\Annie\.gitmessage.txt
 
-
-
-
-
-
-
-
-
-
-
-
+Create Git Alias
+git config --global alias.last 'log -1 HEAD'
+then you can do
+git last	<< this will run 'git log -1 HEAD', you can see the last commit
 
 
 

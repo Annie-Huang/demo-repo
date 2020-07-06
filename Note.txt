@@ -7,7 +7,7 @@ https://www.youtube.com/watch?v=SWYqp7iY_Tc&t=7s
 Git Tutorials
 https://www.youtube.com/playlist?list=PLkEZWD8wbltmcZQaA0ism9k2E6MGRnHZ7
 Up to:
-How to undo your changes in Git? Git reset
+Git config tutorial. Where is the Git config file?
 
 https://github.com/Annie-Huang/demo-repo
 
@@ -15,5 +15,4 @@ https://github.com/Annie-Huang/demo-repo
 
 Note is in:
 C:\react\GitNote.txt
-
-
+q
