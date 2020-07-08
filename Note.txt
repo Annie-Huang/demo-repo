@@ -7,7 +7,7 @@ https://www.youtube.com/watch?v=SWYqp7iY_Tc&t=7s
 Git Tutorials
 https://www.youtube.com/playlist?list=PLkEZWD8wbltmcZQaA0ism9k2E6MGRnHZ7
 Up to:
-Git rebase tutorial. Rebase vs Merge
+How to undo git rebase using git reflog. How to squash commits.
 
 https://github.com/Annie-Huang/demo-repo
 
