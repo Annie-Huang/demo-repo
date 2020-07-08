@@ -506,12 +506,17 @@ then you can do
 git last	<< this will run 'git log -1 HEAD', you can see the last commit
 
 
-
-
-
-
-
-
-
-
-
+#################
+## Git Stash ####
+#################
+C:\react\demo-repo>git stash
+C:\react\demo-repo>git stash -u		<< will stash unchek files too (new files)
+C:\react\demo-repo>git stash list
+C:\react\demo-repo>git stash apply 0	<< the index of the stash we want to apply, 0 is the the latest one.
+C:\react\demo-repo>git stash show 0
+C:\react\demo-repo>git stash show -p 0			<< show the index 0 in full tree view, p stands for patch
+C:\react\demo-repo>git stash push -m "updated text"	<< stash the change with the msg. then if you do stash list, it will show, e.g. stash@{0}: On my-branch: updated text
+C:\react\demo-repo>git stash branch new-branch 0	<< How to create a branch from stash. new-branch is the branch name
+C:\react\demo-repo>git stash pop
+C:\react\demo-repo>git stash clear			<< How to remove stash
+C:\react\demo-repo>git stash drop 0			<< Remove a single stashed state from the stash list. When no <stash> is given, it removes the latest one
