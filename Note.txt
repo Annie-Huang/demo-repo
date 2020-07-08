@@ -7,7 +7,7 @@ https://www.youtube.com/watch?v=SWYqp7iY_Tc&t=7s
 Git Tutorials
 https://www.youtube.com/playlist?list=PLkEZWD8wbltmcZQaA0ism9k2E6MGRnHZ7
 Up to:
-How to resolve merge conflicts in Git
+Git rebase tutorial. Rebase vs Merge
 
 https://github.com/Annie-Huang/demo-repo
 

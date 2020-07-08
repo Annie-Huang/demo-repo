@@ -258,6 +258,37 @@ C:\react\demo-repo>git commit -m "merged his branch"
 	[my-branch 3ed939f] merged his branch
 C:\react\demo-repo>git log
 
+C:\react\demo-repo>git diff his-branch
+C:\react\demo-repo>git config merge.conflictstyle diff3		<< this looks more confusing to me...
+
+#################
+## Git Rebase ###
+#################
+C:\react\demo-repo>git rebase -i his-branch	<< i stands for interactive
+C:\react\demo-repo>git rebase his-branch
+
+Merge:
+
+his-branch        ---> AA --> BB ---
+                  |                |
+my-branch   A --> B ------> C ---> X
+
+
+Rebase:
+
+his-branch        ---> AA --> BB ---
+                  |                |
+my-branch   A --> B -> AA --> BB --------> C ---> X	<< Put C aside first and then rebase AA and BB into my-branch, and then put my change C in.
+                                                           the dangerous is that it will rewrite the history of my-branch
+
+Rebase:
+- Replays your commits on top of the new base
+- Rewrites history by creating new commits
+- Keeps the git history clean
+- Safe to rebase your own local branches
+- Don't rebase public branches, e.g. master
+- Undo rebase with git reflog
+- In terms of conflict, merge conflict and rebase conflict are the same
 
 ################
 ## Git diff ####
