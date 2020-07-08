@@ -7,7 +7,7 @@ https://www.youtube.com/watch?v=SWYqp7iY_Tc&t=7s
 Git Tutorials
 https://www.youtube.com/playlist?list=PLkEZWD8wbltmcZQaA0ism9k2E6MGRnHZ7
 Up to:
-How to undo git rebase using git reflog. How to squash commits.
+Git cherry pick tutorial. How to use git cherry-pick.
 
 https://github.com/Annie-Huang/demo-repo
 

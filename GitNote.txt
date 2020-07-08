@@ -334,6 +334,32 @@ C:\react\demo-repo>git reset 3ed939f		<< This will keep all our top 3 lines of f
 C:\react\demo-repo>git reset --hard 3ed939f	<< Or you can keep working on the unstaged files
 
 
+######################
+## Git Cherry Pick ###
+######################
+- Bring in changes from a specific commit
+- Choose one or more commits
+
+his-branch        ---> AA --> BB
+                  |
+my-branch   A --> B ------> C ---> X
+
+
+C:\react\demo-repo>git log --oneline
+	ef03a40 BB
+	e0dc2e4 AA
+	c78efcb B
+	404d733 A
+
+C:\react\demo-repo>git checkout -		<< checkout the previous check out branch
+C:\react\demo-repo>git cherry-pick e0dc2e4	<< pick commit AA and put it into our branch
+C:\react\demo-repo>git log --oneline
+	4dca5cc (HEAD -> my-branch) AA		<< will create new commit ID.
+	4ae927c ...
+	8200141 ...
+C:\react\demo-repo>git cherry-pick e0dc2e4 ef03a40	<< you can pick more than one commits
+
+C:\react\demo-repo>git cherry-pick e0dc2e4 -n		<< How to checrry pick with out commit, -n stands for -no-commit
 
 
 ################
