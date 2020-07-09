@@ -520,3 +520,35 @@ C:\react\demo-repo>git stash branch new-branch 0	<< How to create a branch from 
 C:\react\demo-repo>git stash pop
 C:\react\demo-repo>git stash clear			<< How to remove stash
 C:\react\demo-repo>git stash drop 0			<< Remove a single stashed state from the stash list. When no <stash> is given, it removes the latest one
+
+
+##################
+## Git Bisect ####
+##################
+           1 week ago                                   today
+my branch     A -------> B -------> C -------> D -------> E
+           working                                     no working
+
+C:\react\demo-repo>git log --oneline
+3c22340 (HEAD -> master, origin/master, origin/HEAD) Notes for "Git stash tutorial. How to save changes for later in git."
+da066aa Notes for "Git cherry pick tutorial. How to use git cherry-pick."
+e0dc2e4 Notes for "How to undo git rebase using git reflog. How to squash commits."
+c78efcb Notes for 'Git rebase tutorial. Rebase vs Merge'
+404d733 Notes for "How to resolve merge conflicts in Git"
+4dca5cc base file commit to master
+
+
+C:\react\demo-repo>git bisect start
+C:\react\demo-repo>git bisect bad		<< mark the current version as not working
+C:\react\demo-repo>git bisect good 4dca5cc	<< mark the version that is working. It will auto log into the version in the middle of these two versions
+                                                   and you will check whether this version is good or not, and let's say it's bad, mark it as bad:
+C:\react\demo-repo>git bisect bad		<< again it will choose the middle between the good and bad. Mark if this new one is working or not:
+C:\react\demo-repo>git bisect good
+... continue until it eventuall tell you this is the first bad commit; to finis you will type:
+C:\react\demo-repo>git bisect reset
+
+
+
+C:\react\demo-repo>git show e0dc2e4		<< How to view the changes. let's say e0dc2e4 is the first bacd commit found by the bisect
+C:\react\demo-repo>git revert e0dc2e4		<< How to revert a bad commit, type the msg, :wq to save and quit
+
